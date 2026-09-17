@@ -79,6 +79,17 @@ class Users extends Dbh {
         return null;
     }
 
+    public static function get_all_users() {
+        $connection = self::connect();
+        $sql = 'SELECT * FROM users;';
+        $stmt = $connection->prepare($sql);
+        $stmt->execute([]);
+        
+        if ($all_users = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+            return $all_users;
+        }
+    }
+
     private static function email_exists($email) {
         $connection = Dbh::connect();
         $sql = 'SELECT * FROM users WHERE email = ?;';
