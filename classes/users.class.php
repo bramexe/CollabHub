@@ -1,18 +1,18 @@
 <?php
 require_once 'dbh.class.php';
+require_once 'specialties.class.php';
 
 class Users extends Dbh {
 
-    public static function signup_user($email, $full_name, $phone, $specialty, $role, $password, $password_confirm) {
-        if (self::email_exists($email)) { header("location: ../signup.php?error=email-already-registered"); exit; }
-        if (self::phone_exists($phone)) { header("location: ../signup.php?error=phone-already-registered"); exit; }
-        if (!self::form_password_match($password, $password_confirm)) { header("location: ../signup.php?error=password-doesnt-match"); exit; }
-
+    public static function signup_user($email, $full_name, $phone, $specialty_id, $role, $password, $password_confirm) {
+        if (self::email_exists($email)) { header("location: ../forms/signup.php?error=email-already-registered"); exit; }
+        if (self::phone_exists($phone)) { header("location: ../forms/signup.php?error=phone-already-registered"); exit; }
+        if (!self::form_password_match($password, $password_confirm)) { header("location: ../forms/signup.php?error=password-doesnt-match"); exit; }
         $conn = self::connect();
-        $sql = 'INSERT INTO users (email, phone, full_name, specialty, role, password) values (?, ?, ?, ?, ?, ?);';
+        $sql = 'INSERT INTO users (email, phone, full_name, specialty_id, role, password) values (?, ?, ?, ?, ?, ?);';
         $stmt = $conn->prepare($sql);
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmt->execute([$email, $phone, $full_name, $specialty, $role, $hashed_password]);
+        $stmt->execute([$email, $phone, $full_name, $specialty_id, $role, $hashed_password]);
         header('location: ../index.php');
     }
 
@@ -24,7 +24,7 @@ class Users extends Dbh {
     }
 
     public static function login_user($email, $password) {
-        if (!self::email_exists($email)) { header("location: ../signup.php?error=email-not-found"); exit; }
+        if (!self::email_exists($email)) { header("location: ../forms/signup.php?error=email-not-found"); exit; }
         if (!self::password_match($email, $password)) { header("location: ../signup.php?error=password-doesnt-match"); exit; }
 
         $existing_data = self::get_user_data_by_email($email);

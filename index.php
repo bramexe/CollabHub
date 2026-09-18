@@ -4,6 +4,6 @@ session_start();
         header('location: dashboard.php');
         exit;
     }
-    header('location: login.php');
+    header('location: forms/login.php');
 ?>
 

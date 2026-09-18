@@ -3,6 +3,7 @@
 session_start();
 
 require_once 'classes/users.class.php';
+require_once 'classes/specialties.class.php';
 
 if (!isset($_SESSION['id'])){
     header('location: index.php');
@@ -48,7 +49,7 @@ $all_users = Users::get_all_users();
             echo "<td>" . $user['email'] . "</td>";
             echo "<td>" . $user['phone'] . "</td>";
             echo "<td>" . $user['role'] . "</td>";
-            echo "<td>" . $user['specialty'] . "</td>";
+            echo "<td>" . Specialties::get_specialty($user['specialty_id']) . "</td>";
             echo "<td>" . $user['bio'] . "</td>";
             echo "</tr>";
         }

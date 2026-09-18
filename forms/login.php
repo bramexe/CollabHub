@@ -10,7 +10,7 @@ session_start();
     <title>CollabHub Login</title>
 </head>
 <body>
-    <form action="includes/action.inc.php" method="post">
+    <form action="../includes/action.inc.php" method="post">
         <h2>Login</h2>
         <h3>Email</h3>
         <input type="email" name="email" placeholder="Email" required>

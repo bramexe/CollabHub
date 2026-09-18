@@ -1,5 +1,8 @@
 <?php 
 session_start();
+require_once '../classes/specialties.class.php';
+$all_specialties = Specialties::get_all_specialties();
+
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +13,7 @@ session_start();
     <title>CollabHub Sign Up</title>
 </head>
 <body>
-    <form action="includes/action.inc.php" method="post">
+    <form action="../includes/action.inc.php" method="post">
         <h2>Sign Up</h2>
         <h3>Full Name</h3>
         <input type="text" name="full_name" placeholder="Full Name" required>
@@ -19,8 +22,17 @@ session_start();
         <h3>Phone</h3>
         <input type="tel" name="phone" placeholder="Phone" required>
         <h3>Specialty</h3>
-        <input type="text" name="specialty" placeholder="Specialty" required>
+        <select name="specialty">
+            <?php
+            foreach ($all_specialties as $specialty) {
+                echo "<option value=$specialty[id] > $specialty[name] </option>";
+            }
+
+            ?>
+        </select>
+        
         <h3>Select Role</h3>
+
         <select name="role">
             <option value="creator">Creator</option>
             <option value="manager">Campaign Manager</option>
