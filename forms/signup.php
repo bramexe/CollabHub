@@ -11,17 +11,19 @@ $all_specialties = Specialties::get_all_specialties();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CollabHub Sign Up</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <form action="../includes/action.inc.php" method="post">
-        <h2>Sign Up</h2>
-        <h3>Full Name</h3>
+<div class="page-frame">
+    <form action="../includes/action.inc.php" class="form" method="post">
+        <h2 class="page-title">Sign Up</h2>
+        <h3 class="form-label">Full Name</h3>
         <input type="text" name="full_name" placeholder="Full Name" required>
-        <h3>Email</h3>
+        <h3 class="form-label">Email</h3>
         <input type="email" name="email" placeholder="Email" required>
-        <h3>Phone</h3>
+        <h3 class="form-label">Phone</h3>
         <input type="tel" name="phone" placeholder="Phone" required>
-        <h3>Specialty</h3>
+        <h3 class="form-label">Specialty</h3>
         <select name="specialty">
             <?php
             foreach ($all_specialties as $specialty) {
@@ -31,14 +33,14 @@ $all_specialties = Specialties::get_all_specialties();
             ?>
         </select>
         
-        <h3>Select Role</h3>
+        <h3 class="form-label">Select Role</h3>
 
         <select name="role">
             <option value="creator">Creator</option>
             <option value="manager">Campaign Manager</option>
         </select>
 
-        <h3>Password</h3>
+        <h3 class="form-label">Password</h3>
         <input type="password" name="password" placeholder="Password" required>
         <br><br>
         <input type="password" name="password_confirm" placeholder="Confirm Password" required>
@@ -46,5 +48,6 @@ $all_specialties = Specialties::get_all_specialties();
         <button type="submit" name="signup">Sign Up</button>
         <p>Already have an account? <a href="login.php">Login</a></p>
     </form>
+</div>
 </body>
 </html>

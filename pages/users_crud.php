@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once 'classes/users.class.php';
-require_once 'classes/specialties.class.php';
+require_once '../classes/users.class.php';
+require_once '../classes/specialties.class.php';
 
 if (!isset($_SESSION['id'])){
     header('location: index.php');
@@ -26,9 +26,11 @@ $all_users = Users::get_all_users();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users Crud</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <h2>Users Crud</h2>
+    <div class="page-frame">
+    <h2 class="page-title">Users Crud</h2>
     <p><a href="dashboard.php">Return to dashboard</a></p>
 
     <table>
@@ -56,5 +58,6 @@ $all_users = Users::get_all_users();
 
         ?>
     </table>
+    </div>
 </body>
 </html>
