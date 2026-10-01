@@ -7,7 +7,7 @@ p {
 }
 
 body {
-    background-color:rgb(29, 29, 29) ;
+    background: linear-gradient(to bottom left, rgb(28, 0, 54), rgb(0, 0, 24),  rgb(28, 0, 54));
     min-height: 100vh;
     margin: 0;
     display: flex;
@@ -55,4 +55,24 @@ a {
 
 a:hover {
     color:rgb(109, 99, 255);
+}
+
+.form-name-text-area {
+    width: 45%;
+    float: left;
+    color: rgb(47, 0, 90);
+    font-size: 15px;
+    text-align: center;
+    align-content: center;
+    font-weight: bold;
+}
+
+.form-desc-text-area {
+    width: 75%;
+    height: 50px;
+    color: rgb(47, 0, 90);
+}
+
+.form-budget-select {
+    height: 35px;
 }

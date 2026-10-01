@@ -20,6 +20,7 @@ $user_data = Users::get_user_data_by_id($_SESSION['id']);
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+<?php include_once '../elements/header.php'; ?>
 <body>
     <div class="dashboard-frame">
         <h2 class="page-title">Dashboard</h2>
