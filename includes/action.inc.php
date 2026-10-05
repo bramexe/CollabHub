@@ -1,6 +1,7 @@
 <?php
 
 require_once '../classes/users.class.php';
+require_once '../classes/availability.class.php';
 
 if (isset($_POST['signup'])){
     $full_name = $_POST['full_name'];
@@ -35,4 +36,14 @@ if (isset($_POST['update_user'])) {
     } else {
         header('location: ../pages/profile.php?error=unknown-error-occured');
     }
+}
+
+if (isset($_POST['update_availability'])) {
+    $id = $_GET['id'];
+    $monday_availability = ($_POST['start_time_monday'] ?? "00:00") . " - " . ($_POST['end_time_monday'] ?? "23:59");
+    $tuesday_availability = ($_POST['start_time_tuesday'] ?? "00:00") . " - " . ($_POST['end_time_tuesday'] ?? "23:59");
+    $wednesday_availability = ($_POST['start_time_wednesday'] ?? "00:00") . " - " . ($_POST['end_time_wednesday'] ?? "23:59");
+    $thursday_availability = ($_POST['start_time_thursday'] ?? "00:00") . " - " . ($_POST['end_time_thursday'] ?? "23:59");
+    $friday_availability = ($_POST['start_time_friday'] ?? "00:00") . " - " . ($_POST['end_time_friday'] ?? "23:59");
+    Availability::update_availability($id, $monday_availability, $tuesday_availability, $wednesday_availability, $thursday_availability, $friday_availability);
 }
