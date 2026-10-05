@@ -1,17 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['id'])){
-    header('location: ../forms/login.php');
-    exit;
-}
-
-require_once '../classes/users.class.php';
-require_once '../classes/specialties.class.php';
-
-$user_data = Users::get_user_data_by_id($_SESSION['id']);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +7,34 @@ $user_data = Users::get_user_data_by_id($_SESSION['id']);
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <div class="page-frame">
-        <h2 class="page-title">Profile</h2>
-        <p>Logged in as <?= $user_data['email'] . ' ' ?><a href="../includes/logout.inc.php">Logout</a></p>
-        <p>Your specialty is <?= Specialties::get_specialty($user_data['specialty_id']) ?></p>
-        <p>Your role is <?= $user_data['role'] ?></p>  
-        <p><a href="dashboard.php">Return to dashboard</a></p>
-    </div>
+    <?php include_once '../elements/header.php'; ?>
+    <main class="page-frame profile-frame">
+        <section class="profile-overview">
+            <div class="profile-picture-frame">
+                <img src="../uploads/profile-pictures/placeholder.png" alt="Profile picture">
+            </div>
+            <div>
+                <h1 class="profile-title">Profile</h1>
+                <p class="profile-email"><?= $user_data['email'] ?></p>
+            </div>
+        </section>
+
+        <section class="profile-details">
+            <div class="profile-detail">
+                <span class="profile-detail-label">Specialty</span>
+                <span><?= Specialties::get_specialty($user_data['specialty_id']) ?></span>
+            </div>
+            <div class="profile-detail">
+                <span class="profile-detail-label">Role</span>
+                <span><?= $user_data['role'] ?></span>
+            </div>
+        </section>
+
+        <div class="profile-actions">
+            <a href="../forms/edit_profile.php">Edit Profile</a>
+            <a href="../includes/logout.inc.php">Log out</a>
+        </div>
+    </main>
+    <?php include_once '../elements/footer.php'; ?>
 </body>
 </html>

@@ -1,7 +1,3 @@
-<?php 
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +7,20 @@ session_start();
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <?php include_once '../elements/header.php'; ?>
     <div class="page-frame">
         <form action="../includes/action.inc.php" class="form" method="post">
         <h2 class="page-title">Create Campaign</h2>
-        <h3 class="form-label">Campaign Name & Budget</h3>
+        <h3 class="form-label">Campaign Name</h3>
         <textarea name="name" class="form-name-text-area" required></textarea>
+        <h3 class="form-label">Budget</h3>
         <input class="form-budget-select" type="number" min="0" max="1000000" placeholder="min-budget"> <input class="form-budget-select" type="number" min="0" max="1000000" placeholder="max-budget">
         <h3 class="form-label">Description</h3>
         <textarea name="description" class="form-desc-text-area" required></textarea>
-        <br><br>
         <button type="submit" name="create_campaign">Create</button>
         <p><a href="../pages/dashboard.php">Cancel</a></p>
     </form>
     </div>
+    <?php include_once '../elements/footer.php'; ?>
 </body>
 </html>

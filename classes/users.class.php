@@ -25,7 +25,7 @@ class Users extends Dbh {
 
     public static function login_user($email, $password) {
         if (!self::email_exists($email)) { header("location: ../forms/signup.php?error=email-not-found"); exit; }
-        if (!self::password_match($email, $password)) { header("location: ../signup.php?error=password-doesnt-match"); exit; }
+        if (!self::password_match($email, $password)) { header("location: ../forms/signup.php?error=password-doesnt-match"); exit; }
 
         $existing_data = self::get_user_data_by_email($email);
 
@@ -77,6 +77,10 @@ class Users extends Dbh {
         }
 
         return null;
+    }
+
+    public static function update_user($id, $name, $email, $phone) {
+        if (!self::email_exists($email)) { header("location: ../pages/profile.php?error="); exit; }
     }
 
     public static function get_all_users() {

@@ -1,25 +1,3 @@
-<?php 
-
-session_start();
-
-require_once '../classes/users.class.php';
-require_once '../classes/specialties.class.php';
-
-if (!isset($_SESSION['id'])){
-    header('location: index.php');
-    exit;
-}
-
-$user_data = Users::get_user_data_by_id($_SESSION['id']);
-
-if (!$user_data['role'] == 'admin') {
-    header('location: index.php');
-    exit;
-}
-
-$all_users = Users::get_all_users();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +7,7 @@ $all_users = Users::get_all_users();
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <?php include_once '../elements/header.php'; ?>
     <div class="page-frame">
     <h2 class="page-title">Users Crud</h2>
     <p><a href="dashboard.php">Return to dashboard</a></p>
@@ -45,7 +24,7 @@ $all_users = Users::get_all_users();
         </tr>
         <?php
 
-        foreach($all_users as $user) {
+        foreach(Users::get_all_users() as $user) {
             echo "<tr>";
             echo "<td>" . $user['full_name'] . "</td>";
             echo "<td>" . $user['email'] . "</td>";
@@ -59,5 +38,6 @@ $all_users = Users::get_all_users();
         ?>
     </table>
     </div>
+    <?php include_once '../elements/footer.php'; ?>
 </body>
 </html>

@@ -1,7 +1,3 @@
-<?php 
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +19,5 @@ session_start();
         <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
     </form>
     </div>
-    
 </body>
 </html>
