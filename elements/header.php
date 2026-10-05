@@ -21,6 +21,7 @@ $role = Users::get_user_data_by_id($_SESSION['id'])['role'];
         <ul>
             <li><a class="nav-link" href="../pages/dashboard.php">Dashboard</a></li>
             <li><a class="nav-link" href="../pages/profile.php">Profile</a></li>
+            <li><a class="nav-link" href="../forms/availibility.php">Availibility</a></li>
             <?php if ($role == 'admin'){echo '<li><a class="nav-link" href="../pages/users_crud.php">Manage Users</a></li>';} ?>
             <?php if ($role == 'manager'){echo '<li><a class="nav-link" href="../forms/create_campaign.php">New Campaign</a></li>';} ?>
         </ul>

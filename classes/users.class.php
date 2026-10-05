@@ -79,8 +79,15 @@ class Users extends Dbh {
         return null;
     }
 
-    public static function update_user($id, $name, $email, $phone) {
-        if (!self::email_exists($email)) { header("location: ../pages/profile.php?error="); exit; }
+    public static function update_user($id, $name, $email, $phone, $bio, $specialty) {
+        if (!self::email_exists($email)) { header("location: ../pages/profile.php?error=email-not-found"); exit; }
+        if (!self::phone_exists($phone)) { header("location: ../pages/profile.php?error=phone-not-found"); exit; }
+        if (!self::get_user_data_by_id($id)) { header("location: ../pages/profile.php?data-not-found"); exit; }
+        $conn = self::connect();
+        $sql = 'UPDATE users SET full_name = ?, phone = ?, email = ?, bio = ?, specialty_id = ? WHERE id = ?;';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$name, $phone, $email, $bio, $specialty, $id]);
+        header("location: ../pages/profile.php");
     }
 
     public static function get_all_users() {

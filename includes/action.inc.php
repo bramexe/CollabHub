@@ -28,10 +28,11 @@ if (isset($_POST['update_user'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];
-        $bio = $_POST['specialty'];
+        $bio = $_POST['desc'];
+        $specialty = $_POST['specialty'];
 
-        
+        Users::update_user($id, $name, $email, $phone, $bio, $specialty);
     } else {
-        header('location: ../pages/profile.php');
+        header('location: ../pages/profile.php?error=unknown-error-occured');
     }
 }

@@ -15,7 +15,7 @@
             </div>
             <div>
                 <h1 class="profile-title">Profile</h1>
-                <p class="profile-email"><?= $user_data['email'] ?></p>
+                <p class="profile-email"><?= $user_data['full_name'] ?></p> <p><?= $user_data['bio'] ?></p>
             </div>
         </section>
 

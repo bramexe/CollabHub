@@ -1,6 +1,5 @@
 <?php
  require_once '../classes/specialties.class.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

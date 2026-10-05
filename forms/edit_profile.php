@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Edit Profile</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <?php include_once '../elements/header.php'; ?>
+    <?php include_once '../elements/header.php';
+ ?>
     <form action="../includes/action.inc.php?id=<?= $user_data['id'] ?>" method="post">
         <main class="page-frame profile-frame">
         <section class="profile-overview">
@@ -26,25 +27,7 @@
             </div>
             <div class="profile-detail">
             <p>Description</p>
-            <input class="profile-detail-label" name="desc" value="<?= $user_data['bio'] ?>">
-            </div>
-            <div class="profile-detail">
-            <p>Email</p>
-            <input class="profile-detail-label" name="email" value="<?= $user_data['email'] ?>">
-            </div>
-            <div class="profile-detail">
-            <p>Phone</p>
-            <input class="profile-detail-label" name="phone" value="<?= $user_data['phone'] ?>">
-            </div>
-            <div class="profile-detail">
-            <p>Specialty</p>
-            <select class="profile-detail-label" name="specialty" >
-            <?php
-            foreach (Specialties::get_all_specialties() as $specialty) {
-                echo "<option value=$specialty[id] > $specialty[name] </option>";
-            }
-            ?>
-            </select>
+            <textarea class="form-label" name="desc" required><?= $user_data['bio'] ?></textarea>
             </div>
             </section>
 
