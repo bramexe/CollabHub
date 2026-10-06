@@ -1,7 +1,13 @@
 <?php
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once '../classes/users.class.php';
 require_once '../classes/availability.class.php';
+require_once '../classes/campaigns.class.php';
+
 
 if (isset($_POST['signup'])){
     $full_name = $_POST['full_name'];
@@ -21,7 +27,35 @@ if (isset($_POST['login'])){
 }
 
 if (isset($_POST['create_campaign'])) {
-    
+    $id = $_GET['id'];
+    $name = $_POST['name'];
+    $min_budget = $_POST['min_budget'];
+    $max_budget = $_POST['max_budget'];
+    $desc = $_POST['description'];
+    Campaigns::insert_campaign($name, $desc, $id, $max_budget, $min_budget);
+    header('location: ../pages/my_campaigns.php?campaign=created');
+    exit;
+}
+
+if (isset($_POST['set_campaign_status'])) {
+    if ($id = $_GET['id']) {
+        $status = $_POST['status'];
+        Campaigns::set_campaign_status($id, $status);
+    }
+}
+
+if (isset($_POST['set_campaign_date'])) {
+    $id = $_GET['id'];
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    Campaigns::set_campaign_dates($id, $start_date, $end_date);
+}
+
+if (isset($_POST['set_campaign_budget'])) {
+    $id = $_GET['id'];
+    $min = $_POST['min_budget'];
+    $max = $_POST['max_budget'];
+    Campaigns::set_campaign_budgets($id, $min, $max);
 }
 
 if (isset($_POST['update_user'])) {

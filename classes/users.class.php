@@ -30,7 +30,6 @@ class Users extends Dbh {
         $existing_data = self::get_user_data_by_email($email);
 
         if ($existing_data['id']) {
-            session_start();
             $_SESSION['id'] = $existing_data['id'];
             header('location: ../index.php');
             exit;
@@ -113,6 +112,26 @@ class Users extends Dbh {
         }
 
         return false;
+    }
+
+    public static function get_users_by_input($input) {
+        $selected = [];
+        foreach(self::get_all_users() as $user) {
+            if((!empty($input)) && ($input == $user['full_name'] || $input == Specialties::get_specialty($user['specialty_id'])) && $user['role'] == 'creator') {
+                $selected[] = $user;
+            }
+        }
+        return $selected;
+    }
+
+        public static function get_users_by_role($role) {
+        $selected = [];
+        foreach(self::get_all_users() as $user) {
+            if($user['role'] == $role) {
+                $selected[] = $user;
+            }
+        }
+        return $selected;
     }
 
     private static function phone_exists($phone) {

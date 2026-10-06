@@ -234,6 +234,18 @@ p {
     font-size: 0.9rem;
 }
 
+.nav-bar-image {
+    display: block;
+    width: 22px;
+    height: 22px;
+    opacity: 0.75;
+}
+
+.site-nav .nav-link:hover .nav-bar-image,
+.site-nav .nav-link:focus-visible .nav-bar-image {
+    opacity: 1;
+}
+
 table {
     display: block;
     max-width: 100%;
@@ -246,6 +258,7 @@ td {
     padding: 10px 12px;
     border-bottom: 1px solid var(--border);
     text-align: left;
+    width: 250px;
 }
 
 @media (max-width: 600px) {

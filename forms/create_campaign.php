@@ -9,15 +9,17 @@
 <body>
     <?php include_once '../elements/header.php'; ?>
     <div class="page-frame">
-        <form action="../includes/action.inc.php" class="form" method="post">
+        <form action="../includes/action.inc.php?id=<?= $id ?>" class="form" method="post" onsubmit="this.querySelector('button[type=submit]').disabled = true;">
+        <input type="hidden" name="create_campaign" value="1">
+        <input type="hidden" name="create_campaign_token" value="<?= $_SESSION['create_campaign_token'] ?>">
         <h2 class="page-title">Create Campaign</h2>
         <h3 class="form-label">Campaign Name</h3>
-        <textarea name="name" class="form-name-text-area" required></textarea>
+        <input name="name" class="form-name-text-area" required>
         <h3 class="form-label">Budget</h3>
-        <input class="form-budget-select" type="number" min="0" max="1000000" placeholder="min-budget"> <input class="form-budget-select" type="number" min="0" max="1000000" placeholder="max-budget">
+        <input class="form-budget-select" type="number" name="min_budget" min="0" max="1000000" placeholder="min-budget"> <input class="form-budget-select" name="max_budget" type="number" min="0" max="1000000" placeholder="max-budget">
         <h3 class="form-label">Description</h3>
         <textarea name="description" class="form-desc-text-area" required></textarea>
-        <button type="submit" name="create_campaign">Create</button>
+        <button type="submit">Create</button>
         <p><a href="../pages/dashboard.php">Cancel</a></p>
     </form>
     </div>
