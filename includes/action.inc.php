@@ -36,6 +36,16 @@ if (isset($_POST['create_campaign'])) {
     header('location: ../pages/my_campaigns.php?campaign=created');
     exit;
 }
+if(isset($_POST['edit_campaign'])) {
+    $id = $_GET['id'];
+    $name = $_POST['name'];
+    $min_budget = $_POST['min_budget'];
+    $max_budget = $_POST['max_budget'];
+    $desc = $_POST['description'];
+    Campaigns::update_campaign($id, $min_budget, $max_budget, $name, $desc);
+    header('location: ../pages/my_campaigns.php?campaign=created');
+    exit;
+}
 
 if (isset($_POST['set_campaign_status'])) {
     if ($id = $_GET['id']) {

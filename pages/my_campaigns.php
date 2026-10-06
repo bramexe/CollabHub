@@ -16,6 +16,7 @@
                 <th>Budget Range</th>
                 <th>Date</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
         <?php
 
@@ -40,10 +41,17 @@
                         }
                         
                         echo "<td><a href=../forms/set_campaign_status.php?id=" . $campaign['id'] . ">" . $campaign['status'] . "</a></td>";
+                        echo "<td><a href=../forms/edit_campaign.php?id=" . $campaign['id'] . ">Edit</a> <a href=../includes/delete_campaign.inc.php?id=" . $campaign['id'] . ">Delete</a> <a href=../forms/creators_search.php?campaign_id=" . $campaign['id'] . ">Invite</a>";
                         echo "</tr>";
                     }
                 }
 
+            }
+
+            
+            # load creator campaigns
+            if ($user_data['role'] == 'creator') {
+            
             }
 
         ?>

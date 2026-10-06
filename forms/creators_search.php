@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <?php include_once '../elements/header.php'; ?>
+    <?php include_once '../elements/header.php'; 
+    $campaign_id = $_GET['campaign_id'] || null;
+    ?>
     <div class="dashboard-frame">
-        <form action="../pages/creators.php" method="get">
+        <form action="../pages/creators.php?campaign_id=<?= $campaign_id ?>" method="post">
             <h2 class="page-title">Find Creators</h2>
         <input name="input" type="text" placeholder="Search by name or specialty...">
         </form>

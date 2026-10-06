@@ -19,9 +19,11 @@
             <?php
                 if ($notifications = Notifications::get_user_notifications($id)) {
                     foreach($notifications as $notif) {
-                        echo "<td>" . $notif['title'] . "</td>";
-                        echo "<td>Unread</td>";
-                        echo "<td><a href=open_notification.php?id=" . $notif['id'] . ">Open</a></td>";
+                        echo "<tr>";
+                        echo "<td><a href=open_notification.php?id=" . $notif['id'] . ">" . $notif['title'] . "</a></td>";
+                        echo "<td>" . $notif['status'] . "</td>";
+                        echo "<td><a href=open_notification.php?id=" . $notif['id'] . ">Delete</a></td>";
+                        echo "</tr>";
                     }
                 } else {
                     echo '<tr><td><p>No notifications found.</p></td></tr>';

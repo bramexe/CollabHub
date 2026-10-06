@@ -241,6 +241,18 @@ p {
     opacity: 0.75;
 }
 
+.back-image {
+    display: block;
+    width: 30px;
+    height: 30px;
+    opacity: 0.75;
+    color: #58636d;
+}
+
+.back-image:hover {
+    opacity: 1;
+}
+
 .site-nav .nav-link:hover .nav-bar-image,
 .site-nav .nav-link:focus-visible .nav-bar-image {
     opacity: 1;

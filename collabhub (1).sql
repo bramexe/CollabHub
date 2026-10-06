@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 06 okt 2026 om 20:54
+-- Gegenereerd op: 06 okt 2026 om 23:08
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -70,11 +70,8 @@ CREATE TABLE `campaigns` (
 INSERT INTO `campaigns` (`id`, `name`, `description`, `manager_id`, `creators_ids`, `budget_max`, `budget_min`, `start_date`, `end_date`, `status`) VALUES
 (1, 'Campaign One', 'Description!\r\n', 4, '', 300, 150, '2006-12-19', '2008-05-29', 'Created'),
 (4, 'Spaans', 'Spanish', 4, '', 300000, 150000, '2255-12-18', '2002-12-18', 'Created'),
-(5, 'lalalal', 'first lalalal\r\n', 4, '', 3000, 1500, '0000-00-00', '0000-00-00', 'Created'),
-(6, 'lalalal', 'first lalalal\r\n', 4, '', 3000, 1500, '0000-00-00', '0000-00-00', 'Created'),
-(7, 'lalalal', 'first lalalal\r\n', 4, '', 3000, 1500, '0000-00-00', '0000-00-00', 'Created'),
-(8, 'lalalal', 'first lalalal\r\n', 4, '', 3000, 1500, '0000-00-00', '0000-00-00', 'Created'),
-(9, 'lalalal', 'first lalalal\r\n', 4, '', 3000, 1500, '0000-00-00', '0000-00-00', 'Created');
+(10, 'My second campaign!', 'Desc', 4, '', 75000, 25000, '0000-00-00', '0000-00-00', 'Created'),
+(12, 'Campaignee', 'Descriptaones', 4, '', 12345, 1234, '0000-00-00', '0000-00-00', 'Created');
 
 -- --------------------------------------------------------
 
@@ -86,6 +83,13 @@ CREATE TABLE `campaign_connections` (
   `campaign_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `campaign_connections`
+--
+
+INSERT INTO `campaign_connections` (`campaign_id`, `user_id`) VALUES
+(1, 5);
 
 -- --------------------------------------------------------
 
@@ -106,7 +110,11 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `content`, `title`, `status`) VALUES
-(1, 4, 'You have successfully made a new campaign: lalalal', 'New Campaign', 'Read');
+(1, 4, 'You have successfully made a new campaign: lalalal', 'New Campaign', 'Read'),
+(2, 4, 'You have successfully made a new campaign: My second campaign!', 'New Campaign', 'Read'),
+(3, 4, 'You have successfully made a new campaign: Bram Neij', 'New Campaign', 'unread'),
+(4, 4, 'You have successfully made a new campaign: Campaignee', 'New Campaign', 'unread'),
+(7, 5, 'You have been invited by Bram Neji to participate in their campaign: Campaign One <a href=../includes/accept_invite.inc.php?manager_id=4&user_id=5&campaign_id=1>Accept?</a>', 'Campaign Invite: Campaign One', 'Read');
 
 -- --------------------------------------------------------
 
@@ -292,13 +300,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `campaigns`
 --
 ALTER TABLE `campaigns`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT voor een tabel `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT voor een tabel `specialties`

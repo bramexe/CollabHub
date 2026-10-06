@@ -12,9 +12,18 @@ class Campaigns extends Dbh {
         if ($existing_campaign = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return $existing_campaign;
         }
+        return false;
     }
 
-    
+    public static function update_campaign($id, $new_min, $new_max, $new_name, $new_desc) {
+        if (!self::get_campaign($id)) { header('location: ../pages/dashboard.php?error=campaign-not-found'); exit;}
+        $conn = self::connect();
+        $sql = 'UPDATE campaigns SET budget_min = ?, budget_max = ?, name = ?, description = ? WHERE id = ?;';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$new_min, $new_max, $new_name, $new_desc, $id]);
+    }
+
+
     public static function set_campaign_status($id, $status) {
         if (!self::get_campaign($id)) { header('location: ../pages/dashboard.php?error=campaign-not-found'); exit;}
         $conn = self::connect();
@@ -43,6 +52,14 @@ class Campaigns extends Dbh {
 
     }
 
+    public static function delete_campaign($id) {
+        if (!self::get_campaign($id)){ header('location: ../pages/dashboard.php?error=campaign-not-found'); exit;}
+        $conn = self::connect();
+        $sql = 'DELETE FROM campaigns WHERE id = ?;';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+        header('location: ../pages/my_campaigns.php');
+    }
 
     public static function get_manager_campaigns($user_id) {
         $conn = self::connect();

@@ -9,6 +9,7 @@
 <body>
     <?php include_once '../elements/header.php'; ?>
     <div class="dashboard-frame">
+        <a href="inbox.php"><img class="back-image" src="../uploads/img/back.png"></a>
         <?php
         if ($notif_id = $_GET['id']) {
             if ($notif = Notifications::get_notification($notif_id)) {
