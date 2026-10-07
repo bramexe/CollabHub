@@ -55,7 +55,7 @@
                         }
                         echo "</td>";
 
-                        echo "<td><a href=../forms/edit_campaign.php?id=" . $campaign['id'] . ">Edit</a> <a class=\"delete-campaign\" href=../includes/delete_campaign.inc.php?id=" . $campaign['id'] . ">Delete</a> <a href=../forms/creators_search.php?campaign_id=" . $campaign['id'] . ">Invite</a>";
+                        echo "<td><a href=../forms/edit_campaign.php?id=" . $campaign['id'] . ">Edit</a> <a class=\"delete-campaign\" href=../includes/delete_campaign.inc.php?id=" . $campaign['id'] . " onclick=\"return confirm('Are you sure you want to delete this campaign?');\">Delete</a> <a href=../forms/creators_search.php?campaign_id=" . $campaign['id'] . ">Invite</a>";
                         echo "</tr>";
                     }
                 } else {

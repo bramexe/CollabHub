@@ -23,7 +23,7 @@
                         echo "<tr>";
                         echo "<td><a href=open_notification.php?id=" . $notif['id'] . ">" . $notif['title'] . "</a></td>";
                         echo "<td>" . $notif['status'] . "</td>";
-                        echo "<td><a href=../includes/delete_notification.inc.php?notif_id=" . $notif['id'] . ">Delete</a></td>";
+                        echo "<td><a onclick=\"return confirm('Are you sure you want to delete this notification?');\" href=../includes/delete_notification.inc.php?notif_id=" . $notif['id'] . ">Delete</a></td>";
                         echo "</tr>";
                     }
                 } else {
