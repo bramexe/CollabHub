@@ -9,7 +9,7 @@
 <body>
     <?php include_once '../elements/header.php'; ?>
     <div class="page-frame">
-        <form action="../includes/action.inc.php?id=<?= $id ?>" class="form" method="post">
+        <form action="../includes/action.inc.php" class="form" method="post">
         <a href="../pages/dashboard.php"><img class="back-image" src="../uploads/img/back.png"></a>
         <h2 class="page-title">Availability</h2>
         <?php 

@@ -23,6 +23,13 @@ class Connections extends Dbh {
         return false;
     }
 
+    public static function delete_connection_by_campaign_id($campaign_id) {
+        $conn = self::connect();
+        $sql = 'DELETE FROM campaign_connections WHERE campaign_id = ?;';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$campaign_id]);
+    }
+
     public static function get_user_connections($id) {
         $conn = self::connect();
         $sql = 'SELECT * FROM campaign_connections WHERE user_id = ?;';

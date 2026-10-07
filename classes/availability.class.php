@@ -24,7 +24,7 @@ class Availability extends Dbh {
         $stmt = $conn->prepare($sql);
         $stmt->execute([$user_id]);
         
-        if($results = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+        if($results = $stmt->fetch(PDO::FETCH_ASSOC)) {
             return $results;
         }
         return false;

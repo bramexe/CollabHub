@@ -10,6 +10,7 @@
 <body>
     <?php
     require_once '../includes/messages.inc.php';
+    require_once '../classes/specialties.class.php';
     $error = $_GET['error'] ?? '';
     if (isset($messages[$error])) {
     echo '<div class="form-error" role="alert">'
@@ -31,7 +32,8 @@
         <select name="specialty">
             <?php
             foreach (Specialties::get_all_specialties() as $specialty) {
-                echo "<option value=$specialty[id] > $specialty[name] </option>";
+                echo $specialty;
+                echo "<option value=" . $specialty['id'] . "> " . $specialty['name'] . " </option>";
             }
             ?>
         </select>

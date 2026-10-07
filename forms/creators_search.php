@@ -13,7 +13,7 @@
     <div class="dashboard-frame">
         <form action="../pages/creators.php?campaign_id=<?= $campaign_id ?>" method="post">
             <h2 class="page-title">Find Creators</h2>
-        <input name="input" type="text" placeholder="Search by name or specialty...">
+        <input name="input" type="text" placeholder="Search by name or specialty..." value=" ">
         </form>
     </div>
     <?php include_once '../elements/footer.php'; ?>

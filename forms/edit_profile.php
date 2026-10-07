@@ -9,7 +9,7 @@
 <body>
     <?php include_once '../elements/header.php';
  ?>
-    <form action="../includes/action.inc.php?id=<?= $user_data['id'] ?>" method="post">
+    <form action="../includes/action.inc.php" method="post">
         <main class="page-frame profile-frame">
         <section class="profile-overview">
             <div class="profile-picture-frame">

@@ -9,7 +9,7 @@
 <body>
     <?php include_once '../elements/header.php'; ?>
     <div class="dashboard-frame">
-        <h2 class="page-title">Creators</h2>
+        <h2 class="page-title"><?php if($role = $_POST['role'] == "creator"){echo 'Creators';} else { echo 'Campaign Managers';} ?></h2>
         <a href="../forms/user_search.php"><img class="back-image" src="../uploads/img/back.png"></a>
         <table>
             <tr>

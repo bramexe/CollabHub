@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 06 okt 2026 om 23:08
+-- Gegenereerd op: 07 okt 2026 om 20:01
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -42,7 +42,8 @@ CREATE TABLE `availability` (
 --
 
 INSERT INTO `availability` (`user_id`, `monday_availability`, `tuesday_availability`, `wednesday_availability`, `thursday_availability`, `friday_availability`, `saturday_availability`) VALUES
-(4, '10:30 - 17:00', '09:00 - 17:00', '09:00 - 17:00', '09:00 - 17:00', '09:00 - 17:00', '');
+(4, '10:30 - 17:00', '09:00 - 17:00', '09:00 - 17:00', '09:00 - 17:00', '09:00 - 17:00', ''),
+(7, '09:00 - 17:00', '09:00 - 17:00', '09:00 - 17:00', '09:00 - 17:00', '09:00 - 17:00', '');
 
 -- --------------------------------------------------------
 
@@ -68,10 +69,7 @@ CREATE TABLE `campaigns` (
 --
 
 INSERT INTO `campaigns` (`id`, `name`, `description`, `manager_id`, `creators_ids`, `budget_max`, `budget_min`, `start_date`, `end_date`, `status`) VALUES
-(1, 'Campaign One', 'Description!\r\n', 4, '', 300, 150, '2006-12-19', '2008-05-29', 'Created'),
-(4, 'Spaans', 'Spanish', 4, '', 300000, 150000, '2255-12-18', '2002-12-18', 'Created'),
-(10, 'My second campaign!', 'Desc', 4, '', 75000, 25000, '0000-00-00', '0000-00-00', 'Created'),
-(12, 'Campaignee', 'Descriptaones', 4, '', 12345, 1234, '0000-00-00', '0000-00-00', 'Created');
+(20, 'Campaign 1', 'My first campaign as a campaign manager!\r\n', 7, '', 30000, 25000, '0000-00-00', '0000-00-00', 'Created');
 
 -- --------------------------------------------------------
 
@@ -89,7 +87,7 @@ CREATE TABLE `campaign_connections` (
 --
 
 INSERT INTO `campaign_connections` (`campaign_id`, `user_id`) VALUES
-(1, 5);
+(20, 6);
 
 -- --------------------------------------------------------
 
@@ -102,19 +100,29 @@ CREATE TABLE `notifications` (
   `user_id` int(11) NOT NULL,
   `content` varchar(500) NOT NULL,
   `title` varchar(100) NOT NULL,
-  `status` varchar(10) NOT NULL
+  `status` varchar(10) NOT NULL,
+  `creation_datetime` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `notifications`
 --
 
-INSERT INTO `notifications` (`id`, `user_id`, `content`, `title`, `status`) VALUES
-(1, 4, 'You have successfully made a new campaign: lalalal', 'New Campaign', 'Read'),
-(2, 4, 'You have successfully made a new campaign: My second campaign!', 'New Campaign', 'Read'),
-(3, 4, 'You have successfully made a new campaign: Bram Neij', 'New Campaign', 'unread'),
-(4, 4, 'You have successfully made a new campaign: Campaignee', 'New Campaign', 'unread'),
-(7, 5, 'You have been invited by Bram Neji to participate in their campaign: Campaign One <a href=../includes/accept_invite.inc.php?manager_id=4&user_id=5&campaign_id=1>Accept?</a>', 'Campaign Invite: Campaign One', 'Read');
+INSERT INTO `notifications` (`id`, `user_id`, `content`, `title`, `status`, `creation_datetime`) VALUES
+(7, 5, 'You have been invited by Bram Neji to participate in their campaign: Campaign One <a href=../includes/accept_invite.inc.php?manager_id=4&user_id=5&campaign_id=1>Accept?</a>', 'Campaign Invite: Campaign One', 'Read', '2026-10-07 00:00:00'),
+(8, 5, 'You have been invited by Bram Neji to participate in their campaign: Campaign One <a href=../includes/accept_invite.inc.php?manager_id=4&user_id=5&campaign_id=1>Accept?</a>', 'Campaign Invite: Campaign One', 'Read', '2026-10-07 00:00:00'),
+(9, 3, 'You have been invited by Bram Neji to participate in their campaign: Campaign One <a href=../includes/accept_invite.inc.php?manager_id=4&user_id=3&campaign_id=1>Accept?</a>', 'Campaign Invite: Campaign One', 'Read', '2026-10-07 08:36:06'),
+(10, 3, 'You have been invited by Bram Neji to participate in their campaign: Campaign One <a href=../includes/accept_invite.inc.php?manager_id=4&user_id=3&campaign_id=1>Accept?</a>', 'Campaign Invite: Campaign One', 'Read', '2026-10-07 08:37:02'),
+(20, 5, 'You have been invited by Bram Neji to participate in their campaign: MyCampaign <a href=../includes/accept_invite.inc.php?manager_id=4&user_id=5&campaign_id=18>Accept?</a>', 'Campaign Invite: MyCampaign', 'Read', '2026-10-07 14:58:25'),
+(21, 4, 'You have successfully made a new campaign: LevelUP', 'New Campaign', 'Read', '2026-10-07 18:40:37'),
+(29, 5, 'You have been invited by <a href=../pages/foreign_profile.php?foreign_id=4&backpage=inbox>Bram Neji</a> to participate in their campaign: LevelUP <a href=../includes/accept_invite.inc.php?manager_id=4&user_id=5&campaign_id=19>Accept?</a> <a href=../includes/decline_invite.inc.php?manager_id=4&campaign_id=19&user_id=5>Decline</a>', 'Campaign Invite: LevelUP', 'Read', '2026-10-07 19:10:20'),
+(30, 4, 'Your invite for campaign: LevelUP has been declined by Bram Neij.', 'Invite Declined', 'Read', '2026-10-07 19:14:29'),
+(31, 4, 'You successfully updated campaign: LevelU.', 'Updated Campaign', 'Read', '2026-10-07 19:37:16'),
+(32, 2, 'The campaign:  LevelU was updated.', 'Updated Campaign', 'Read', '2026-10-07 19:37:16'),
+(33, 7, 'You have successfully made a new campaign: Campaign 1', 'New Campaign', 'Read', '2026-10-07 19:46:29'),
+(34, 6, 'You have been invited by <a href=../pages/foreign_profile.php?foreign_id=7&backpage=inbox>Bram Neij</a> to participate in their campaign: Campaign 1 <a href=../includes/accept_invite.inc.php?manager_id=7&user_id=6&campaign_id=20>Accept?</a> <a href=../includes/decline_invite.inc.php?manager_id=7&campaign_id=20&user_id=6>Decline</a>', 'Campaign Invite: Campaign 1', 'Read', '2026-10-07 19:48:52'),
+(35, 7, 'You successfully updated campaign: Campaign 1.', 'Updated Campaign', 'Read', '2026-10-07 19:49:57'),
+(36, 6, 'The campaign:  Campaign 1 was updated.', 'Updated Campaign', 'Read', '2026-10-07 19:49:57');
 
 -- --------------------------------------------------------
 
@@ -249,18 +257,21 @@ CREATE TABLE `users` (
   `specialty_id` int(10) NOT NULL,
   `bio` varchar(400) NOT NULL,
   `profile_picture` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `creation_datetime` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`id`, `full_name`, `email`, `phone`, `role`, `specialty_id`, `bio`, `profile_picture`, `password`) VALUES
-(2, 'Bram Neij', 'bramn.s@hotmail.com', '06 10370920', 'admin', 189, '', '', '$2y$10$q71pXglO685NlXTOpkGz/OsVVJPRbXbkFaKiCEyC06YTa5w4THPR2'),
-(3, 'Bram Neij', 'bramn@hotmail.com', '06 10370921', 'creator', 190, '', '', '$2y$10$5OZU7rQEhDFArDVJ3CG71.ng6JGNmL5nRTjZ2EUmkmxRsnUAsLMVm'),
-(4, 'Bram Neji', 'bramn.sas@hotmail.com', '+31 610370926', 'manager', 185, 'this my desc', '', '$2y$10$7xvwFy1eTYKyiqdO2SpSduU.krfMqpDQcKYfuTljFtHpuKDEgE2ua'),
-(5, 'Bram Neij', 'bramn.aas@hotmail.com', '+31 61037032', 'creator', 167, '', '', '$2y$10$P9NrfVVPgSwPeqT4n1oZCO6bSJVLhr6LaxDunV2TYoIPEk.Z67LOe');
+INSERT INTO `users` (`id`, `full_name`, `email`, `phone`, `role`, `specialty_id`, `bio`, `profile_picture`, `password`, `creation_datetime`) VALUES
+(2, 'Bram Neij', 'bramn.s@hotmail.com', '06 10370920', 'admin', 189, '', '', '$2y$10$q71pXglO685NlXTOpkGz/OsVVJPRbXbkFaKiCEyC06YTa5w4THPR2', '2026-10-07'),
+(3, 'Bram Neij', 'bramn@hotmail.com', '06 10370921', 'creator', 190, '', '', '$2y$10$5OZU7rQEhDFArDVJ3CG71.ng6JGNmL5nRTjZ2EUmkmxRsnUAsLMVm', '2026-10-07'),
+(4, 'Bram Neji', 'bramn.sas@hotmail.com', '+31 610370926', 'manager', 185, 'this my desc', '', '$2y$10$7xvwFy1eTYKyiqdO2SpSduU.krfMqpDQcKYfuTljFtHpuKDEgE2ua', '2026-10-07'),
+(5, 'Bram Neij', 'bramn.aas@hotmail.com', '+31 61037032', 'creator', 167, '', '', '$2y$10$P9NrfVVPgSwPeqT4n1oZCO6bSJVLhr6LaxDunV2TYoIPEk.Z67LOe', '2026-10-07'),
+(6, 'Bartje', 'creator@hotmail.com', '06148235843', 'creator', 147, 'my description', '', '$2y$10$SlNCGidIDilI/DsUPBHy2eu7pvDzjV28E0qsodJVvm7c9U76xGJXW', '2026-10-07'),
+(7, 'Bram Neij', 'manager@hotmail.com', '06 12345678', 'manager', 150, '', '', '$2y$10$7ERVSuCXPEkFud2AfvlhOu6Fr3RHvLCHLOka2DmXgoXV0WGmGmxrK', '2026-10-07');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -300,13 +311,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `campaigns`
 --
 ALTER TABLE `campaigns`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT voor een tabel `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT voor een tabel `specialties`
@@ -318,7 +329,7 @@ ALTER TABLE `specialties`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -46,10 +46,18 @@
             </div>
             <div class="profile-detail">
                 <span class="profile-detail-label">Availability</span>
+                <ul>
                 <?php
-                $data = ['monday_availability', 'tuesday_availability', 'wednesday_availability', '', '']
-
+                $data = ['monday_availability' => 'Monday', 'tuesday_availability' => 'Tuesday', 'wednesday_availability' => 'Wednesday', 'thursday_availability' => 'Thursday', 'friday_availability' => 'Friday'];
+                foreach ($data as $availability_key => $available_day) {
+                    if (!empty($availability[$availability_key])) {
+                        echo '<li>' . $available_day . ': ' . $availability[$availability_key] . '</li>';
+                    } else {
+                        echo '<li>' . $available_day . ' not set.</li>';
+                    }
+                }
                 ?>
+                </ul>
             </div>
         </section>
 

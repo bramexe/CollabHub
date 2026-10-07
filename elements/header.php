@@ -20,7 +20,7 @@ $error = $_GET['error'] ?? '';
 
 if (isset($messages[$error])) {
     echo '<div class="form-error" role="alert">'
-        . htmlspecialchars($messages[$error], ENT_QUOTES, 'UTF-8')
+        . $messages[$error]
         . '</div>';
 }
 
@@ -34,7 +34,7 @@ if (isset($messages[$error])) {
             <li><a class="nav-link" href="../pages/dashboard.php"><img class="nav-bar-image" src="../uploads/img/dashboard.png"></a></li>
             <?php if ($role == 'admin'){echo '<li><a class="nav-link" href="../pages/users_crud.php"><img class="nav-bar-image" src="../uploads/img/manage_users.png"></a></li>';} ?>
             <?php if ($role == 'manager'){echo '<li><a class="nav-link" href="../forms/create_campaign.php"><img class="nav-bar-image" src="../uploads/img/plus.png"></a></li>';} ?>
-            <?php if ($role == 'manager'){echo '<li><a class="nav-link" href="../pages/my_campaigns.php"><img class="nav-bar-image" src="../uploads/img/campaign.png"></a></li>';} ?>
+            <li><a class="nav-link" href="../pages/my_campaigns.php"><img class="nav-bar-image" src="../uploads/img/campaign.png"></a></li>
             <li><a class="nav-link" href="../pages/profile.php?backpage=dashboard"><img class="nav-bar-image" src="../uploads/img/profile.png"></a></li>
             <li><a class="nav-link" href="../forms/availibility.php"><img class="nav-bar-image" src="../uploads/img/clock.png"></a></li>
             <li><a class="nav-link" href="../forms/user_search.php"><img class="nav-bar-image" src="../uploads/img/find_people.png"></a></li>

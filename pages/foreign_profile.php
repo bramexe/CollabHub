@@ -10,6 +10,7 @@
     <?php include_once '../elements/header.php';
     $id = $_GET['foreign_id'];
     $user_data = Users::get_user_data_by_id($id);
+    $availability = Availability::get_availability($id);
     ?>
     <main class="page-frame profile-frame">
         <a href="<?= $_GET['backpage'] ?>.php"><img class="back-image" src="../uploads/img/back.png"></a>
@@ -43,6 +44,21 @@
             <div class="profile-detail">
                 <span class="profile-detail-label">Member since</span>
                 <span><?= $user_data['creation_datetime'] ?></span>
+            </div>
+            <div class="profile-detail">
+                <span class="profile-detail-label">Availability</span>
+                <ul>
+                <?php
+                $data = ['monday_availability' => 'Monday', 'tuesday_availability' => 'Tuesday', 'wednesday_availability' => 'Wednesday', 'thursday_availability' => 'Thursday', 'friday_availability' => 'Friday'];
+                foreach ($data as $availability_key => $available_day) {
+                    if (!empty($availability[$availability_key])) {
+                        echo '<li>' . $available_day . ': ' . $availability[$availability_key] . '</li>';
+                    } else {
+                        echo '<li>' . $available_day . ' not set.</li>';
+                    }
+                }
+                ?>
+                </ul>
             </div>
         </section>
     </main>

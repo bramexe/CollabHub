@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <?php include_once '../elements/header.php'; ?>
+    <?php include_once '../elements/header.php';
+    if ($role != 'admin' && $role != 'manager') {
+        header('location: dashboard.php');
+        exit;
+    }  ?>
     <div class="dashboard-frame">
         <h2 class="page-title">Creators</h2>
         <table>

@@ -49,7 +49,7 @@ class Notifications extends Dbh {
             if ($campaign_data = Campaigns::get_campaign($campaign_id)) {
                 if ($manager_data = Users::get_user_data_by_id($manager_id)) {
                     $notification_title = 'Campaign Invite: ' . $campaign_data['name'];
-                    $notification_content = 'You have been invited by ' . $manager_data['full_name'] . ' to participate in their campaign: ' . $campaign_data['name'] . ' ' .'<a href=../includes/accept_invite.inc.php?manager_id=' . $manager_id . '&user_id=' . $user_id . '&campaign_id=' . $campaign_id . '>Accept?</a>';
+                    $notification_content = 'You have been invited by <a href=../pages/foreign_profile.php?foreign_id=' . $manager_data['id'] . '&backpage=inbox>' . $manager_data['full_name'] . '</a> to participate in their campaign: ' . $campaign_data['name'] . ' ' .'<a href=../includes/accept_invite.inc.php?manager_id=' . $manager_id . '&user_id=' . $user_id . '&campaign_id=' . $campaign_id . '>Accept?</a> <a href=../includes/decline_invite.inc.php?manager_id=' . $manager_id . '&campaign_id=' . $campaign_id . '&user_id=' . $user_id .  '>Decline</a>';
                     self::insert_notification($user_id, $notification_content, $notification_title);
                 } else {
                     exit;
