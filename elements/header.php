@@ -27,7 +27,6 @@ if (isset($messages[$error])) {
 ?>
 
 <header class="site-header">
-    <script src="../js/script.js"></script>
     <a class="header-logo" href="../index.php">CollabHub</a>
     <nav class="site-nav" aria-label="Main navigation">
         <ul>
