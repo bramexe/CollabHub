@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php include_once '../elements/header.php'; ?>
-    <div class="page-frame">
+    <div class="dashboard-frame">
     <h2 class="page-title">Users Crud</h2>
     <p><a href="dashboard.php">Return to dashboard</a></p>
 

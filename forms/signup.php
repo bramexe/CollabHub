@@ -1,5 +1,3 @@
-<?php
- require_once '../classes/specialties.class.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +8,15 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <?php
+    require_once '../includes/messages.inc.php';
+    $error = $_GET['error'] ?? '';
+    if (isset($messages[$error])) {
+    echo '<div class="form-error" role="alert">'
+        . htmlspecialchars($messages[$error])
+        . '</div>';
+    }
+    ?>
 <div class="page-frame">
     <form action="../includes/action.inc.php" class="form" method="post">
         <h2 class="page-title">Sign Up</h2>

@@ -9,6 +9,7 @@
 <body>
     <?php include_once '../elements/header.php'; ?>
     <div class="dashboard-frame">
+        <a href="dashboard.php"><img class="back-image" src="../uploads/img/back.png"></a>
         <h2 class="page-title">My Inbox</h2>
         <table>
             <tr>
@@ -22,7 +23,7 @@
                         echo "<tr>";
                         echo "<td><a href=open_notification.php?id=" . $notif['id'] . ">" . $notif['title'] . "</a></td>";
                         echo "<td>" . $notif['status'] . "</td>";
-                        echo "<td><a href=open_notification.php?id=" . $notif['id'] . ">Delete</a></td>";
+                        echo "<td><a href=../includes/delete_notification.inc.php?notif_id=" . $notif['id'] . ">Delete</a></td>";
                         echo "</tr>";
                     }
                 } else {

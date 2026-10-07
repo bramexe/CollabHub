@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <?php
+    require_once '../includes/messages.inc.php';
+    $error = $_GET['error'] ?? '';
+    if (isset($messages[$error])) {
+    echo '<div class="form-error" role="alert">'
+        . htmlspecialchars($messages[$error])
+        . '</div>';
+    }
+    ?>  
     <div class="page-frame">
         <form action="../includes/action.inc.php" class="form" method="post">
         <h2 class="page-title">Login</h2>

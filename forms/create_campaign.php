@@ -12,6 +12,7 @@
     ?>
     <div class="page-frame">
         <form action="../includes/action.inc.php?id=<?= $id ?>" class="form" method="post">
+        <a href="../pages/dashboard.php"><img class="back-image" src="../uploads/img/back.png"></a>
         <h2 class="page-title">Create Campaign</h2>
         <h3 class="form-label">Campaign Name</h3>
         <input name="name" class="form-name-text-area"  required>

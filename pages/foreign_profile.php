@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <?php 
-    include_once '../elements/header.php'; 
-    $availability = Availability::get_availability($id);
+    <?php include_once '../elements/header.php';
+    $id = $_GET['foreign_id'];
+    $user_data = Users::get_user_data_by_id($id);
     ?>
     <main class="page-frame profile-frame">
-        <a href="dashboard.php"><img class="back-image" src="../uploads/img/back.png"></a>
+        <a href="<?= $_GET['backpage'] ?>.php"><img class="back-image" src="../uploads/img/back.png"></a>
         <section class="profile-overview">
             <div class="profile-picture-frame">
                 <img src="../uploads/profile-pictures/placeholder.png" alt="Profile picture">
@@ -44,19 +44,7 @@
                 <span class="profile-detail-label">Member since</span>
                 <span><?= $user_data['creation_datetime'] ?></span>
             </div>
-            <div class="profile-detail">
-                <span class="profile-detail-label">Availability</span>
-                <?php
-                $data = ['monday_availability', 'tuesday_availability', 'wednesday_availability', '', '']
-
-                ?>
-            </div>
         </section>
-
-        <div class="profile-actions">
-            <a href="../forms/edit_profile.php">Edit Profile</a>
-            <a href="../includes/logout.inc.php">Log out</a>
-        </div>
     </main>
     <?php include_once '../elements/footer.php'; ?>
 </body>

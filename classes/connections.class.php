@@ -23,4 +23,26 @@ class Connections extends Dbh {
         return false;
     }
 
+    public static function get_user_connections($id) {
+        $conn = self::connect();
+        $sql = 'SELECT * FROM campaign_connections WHERE user_id = ?;';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+        if ($results = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+            return $results;
+        }
+        return null;
+    }
+
+     public static function get_campaign_connections($id) {
+        $conn = self::connect();
+        $sql = 'SELECT * FROM campaign_connections WHERE campaign_id = ?;';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+        if ($results = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+            return $results;
+        }
+        return null;
+    }
+
 }

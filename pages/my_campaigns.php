@@ -8,7 +8,8 @@
 </head>
 <body>
     <?php include_once '../elements/header.php'; ?>
-    <main class="page-frame">
+    <main class="dashboard-frame">
+        <a href="dashboard.php"><img class="back-image" src="../uploads/img/back.png"></a>
         <h1 class="page-title">My Campaigns</h1>
         <table>
             <tr>
@@ -16,6 +17,7 @@
                 <th>Budget Range</th>
                 <th>Date</th>
                 <th>Status</th>
+                <th>Creators</th>
                 <th>Actions</th>
             </tr>
         <?php
@@ -39,9 +41,20 @@
                         } else {
                             echo "<td><a href=../forms/set_campaign_date.php?id=". $campaign['id'] .">Not set</a></td>";
                         }
-                        
                         echo "<td><a href=../forms/set_campaign_status.php?id=" . $campaign['id'] . ">" . $campaign['status'] . "</a></td>";
-                        echo "<td><a href=../forms/edit_campaign.php?id=" . $campaign['id'] . ">Edit</a> <a href=../includes/delete_campaign.inc.php?id=" . $campaign['id'] . ">Delete</a> <a href=../forms/creators_search.php?campaign_id=" . $campaign['id'] . ">Invite</a>";
+
+                        echo "<td>";
+                        if ($connections = Connections::get_campaign_connections($campaign['id'])) {
+                            foreach($connections as $connection) {
+                                $connection_user = Users::get_user_data_by_id($connection['user_id']);
+                                echo "<a href=foreign_profile.php?foreign_id=" . $connection['user_id'] . "&backpage=my_campaigns>" . $connection_user['full_name'] . " </a>";
+                            }
+                        } else {
+                            echo '<p>No connections</p>';
+                        }
+                        echo "</td>";
+
+                        echo "<td><a href=../forms/edit_campaign.php?id=" . $campaign['id'] . ">Edit</a> <a class=\"delete-campaign\" href=../includes/delete_campaign.inc.php?id=" . $campaign['id'] . ">Delete</a> <a href=../forms/creators_search.php?campaign_id=" . $campaign['id'] . ">Invite</a>";
                         echo "</tr>";
                     }
                 }

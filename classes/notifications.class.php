@@ -7,7 +7,7 @@ class Notifications extends Dbh {
 
     public static function get_user_notifications($user_id) {
         $conn = self::connect();
-        $sql = 'SELECT * FROM notifications WHERE user_id = ?;';
+        $sql = 'SELECT * FROM notifications WHERE user_id = ? ORDER BY creation_datetime;';
         $stmt = $conn->prepare($sql);
         $stmt->execute([$user_id]);
         if ($notifications = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
@@ -27,7 +27,14 @@ class Notifications extends Dbh {
         return null;
     }
 
-    // public static function delete_notification($id) {}
+    public static function delete_notification($id) {
+        if (!self::get_notification($id))  { header("location: ../pages/inbox.php?error=campaign-not-found"); exit; }
+        $conn = self::connect();
+        $sql = 'DELETE FROM notifications WHERE id = ?;';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$id]);
+        header("location: ../pages/inbox.php");
+    }
 
     public static function read_notification($notif_id) {
         if(!self::get_notification($notif_id)) { exit; }

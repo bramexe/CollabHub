@@ -71,12 +71,9 @@ if (isset($_POST['set_campaign_budget'])) {
 if (isset($_POST['update_user'])) {
     if ($id = $_GET['id']) {
         $name = $_POST['name'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
         $bio = $_POST['desc'];
-        $specialty = $_POST['specialty'];
 
-        Users::update_user($id, $name, $email, $phone, $bio, $specialty);
+        Users::update_user($id, $name, $bio);
     } else {
         header('location: ../pages/profile.php?error=unknown-error-occured');
     }

@@ -78,14 +78,12 @@ class Users extends Dbh {
         return null;
     }
 
-    public static function update_user($id, $name, $email, $phone, $bio, $specialty) {
-        if (!self::email_exists($email)) { header("location: ../pages/profile.php?error=email-not-found"); exit; }
-        if (!self::phone_exists($phone)) { header("location: ../pages/profile.php?error=phone-not-found"); exit; }
+    public static function update_user($id, $name, $bio) {
         if (!self::get_user_data_by_id($id)) { header("location: ../pages/profile.php?data-not-found"); exit; }
         $conn = self::connect();
-        $sql = 'UPDATE users SET full_name = ?, phone = ?, email = ?, bio = ?, specialty_id = ? WHERE id = ?;';
+        $sql = 'UPDATE users SET full_name = ?, bio = ? WHERE id = ?;';
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$name, $phone, $email, $bio, $specialty, $id]);
+        $stmt->execute([$name, $bio, $id]);
         header("location: ../pages/profile.php");
     }
 
@@ -116,8 +114,18 @@ class Users extends Dbh {
 
     public static function get_users_by_input($input) {
         $selected = [];
-        foreach(self::get_all_users() as $user) {
-            if((!empty($input)) && ($input == $user['full_name'] || $input == Specialties::get_specialty($user['specialty_id'])) && $user['role'] == 'creator') {
+        $input = trim($input);
+        $users = self::get_all_users();
+
+        if (!$users) { return $selected; }
+
+        if ($input == '') { return $users; }
+
+        foreach($users as $user) {
+            $full_name = (string) $user['full_name'];
+            $specialty = (string) Specialties::get_specialty($user['specialty_id']);
+
+            if(stripos($full_name, $input) !== false || stripos($specialty, $input) !== false) {
                 $selected[] = $user;
             }
         }

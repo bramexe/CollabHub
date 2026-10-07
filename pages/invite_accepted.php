@@ -9,7 +9,8 @@
 <body>
     <?php include_once '../elements/header.php'; ?>
     <div class="dashboard-frame">
-        <h2 class="page-title">Dashboard</h2>
+        <h2 class="page-title">Accepted Invite!</h2>
+        <p><a href="dashboard.php">Back to dashboard</a></p>
     </div>
     <?php include_once '../elements/footer.php'; ?>
 </body>
